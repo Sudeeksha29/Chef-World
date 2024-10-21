@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chef World</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #fff;
+      padding: 10px;
+      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .header-logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    .header-logo img {
+      width: 150px;
+    }
+
+    .container {
+      text-align: center;
+      margin: 0;
+    }
+
+    .header-title {
+      font-size: 1em;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .header-slogan {
+      font-size: 1em;
+      color: #666;
+    }
+
+    nav {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav li {
+      margin: 0 10px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #555;
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      justify-content: center;
+    }
+
+    .search-bar {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+      width: 250px;
+    }
+
+    .search-button {
+      padding: 10px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .search-button:hover {
+      background-color: #555;
+    }
+
+    /* Idli Recipe Section */
+    .idli-recipe {
+      background-color: #fff;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .recipe-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .recipe-details {
+      margin: 10px 0;
+    }
+
+    /* Footer styling */
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 40px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Container styling */
+    .footer-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    /* Left column (about section) */
+    .footer-left {
+      text-align: left;
+      max-width: 500px;
+    }
+
+    .footer-left h2 {
+      margin-top: 0;
+    }
+
+    .footer-left p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: white;
+    }
+
+    /* Links inside the paragraph */
+    .footer-left a {
+      color: white;
+      text-decoration: underline;
+    }
+
+    /* Right column (subscription form) */
+    .footer-right {
+      text-align: right;
+      max-width: 400px;
+    }
+
+    .footer-right h2 {
+      margin-top: 0;
+    }
+
+    .footer-right form {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .footer-right input {
+      padding: 10px;
+      border: none;
+      border-radius: 25px 0 0 25px;
+      width: 200px;
+    }
+
+    .footer-right button {
+      background-color: gray;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 0 25px 25px 0;
+      cursor: pointer;
+    }
+
+    /* Social media section */
+    .fa {
+      padding: 10px;
+      font-size: 30px;
+      width: 20px;
+      text-align: center;
+      text-decoration: none;
+      margin: 2px 2px;
+    }
+
+    .fa:hover {
+      opacity: 0.7;
+    }
+
+    .social-media {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    /* Footer responsiveness */
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-left, .footer-right {
+        text-align: center;
+        max-width: 100%;
+      }
+
+      .footer-right form {
+        justify-content: center;
+      }
+    }
+
+    /* Modal styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 450px;
+      text-align: center;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 30px;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .login-container input,
+    .register-container input,
+    .recovery-container input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .login-button,
+    .register-button,
+    .recovery-button {
+      width: 100%;
+      padding: 10px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .login-button:hover,
+    .register-button:hover,
+    .recovery-button:hover {
+      background-color: #555;
+    }
+
+    /* General UL styling */
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    /* Styles for footer links (previously ULI) */
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin: 0 10px;
+    }
+
+    .footer-links li a {
+      text-decoration: none;
+      color: white; /* Match the footer background */
+    }
+
+    .footer-links li a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-logo">
+      <img src="C:\Users\venka\Downloads\logo.png" alt="Chef World">
+    </div>
+    <div class="container">
+      <div class="header-title">
+        <h1><i>Chef World</i></h1>
+      </div>
+      <div class="header-slogan">
+        <p>Explore, Create, and Enjoy Fresh, Fast, and Flavorful Recipes Every Day!</p>
+      </div>
+    </div>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="C:\Users\venka\Downloads\sb.html">Categories</a></li>
+      <li><a href="C:\Users\venka\Downloads\sb1.html">Cuisine</a></li>
+      <li><a href="#">Popular</a></li>
+      <li><a href="#" id="login-link">Login</a></li>
+    </ul>
+  </nav>
+
+  <div class="search-container">
+    <input type="text" class="search-bar" placeholder="Search Recipes...">
+    <button class="search-button">Search</button>
+  </div>
+
+  <!-- Idli Recipe Section -->
+  <section class="idli-recipe">
+    <h1>Coconut Rice Recipe</h1>
+    <div class="recipe-card">
+      <img src="C:\Users\venka\Downloads\coconut.jpg" alt="Coconut Rice">
+      <p>Prep: 10 minutes | Cook: 15 minutes | Serves: 4</p>
+      <div class="recipe-details">
+        <h2>Ingredients:</h2>
+        <ul>
+          <li>2 cups cooked rice</li>
+          <li>1 cup grated coconut</li>
+          <li>2 tablespoons oil</li>
+          <li>1 teaspoon mustard seeds</li>
+          <li>2 green chilies, slit</li>
+          <li>Salt to taste</li>
+          <li>Coriander leaves for garnish</li>
+        </ul>
+        <h2>Instructions:</h2>
+        <ol>
+          <li>In a pan, heat oil and add mustard seeds.</li>
+          <li>Add green chilies and sauté for a minute.</li>
+          <li>Add grated coconut and salt; cook for 2-3 minutes.</li>
+          <li>Mix in the cooked rice and combine well.</li>
+          <li>Garnish with coriander leaves and serve warm.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        <h2>About Chef World</h2>
+        <p>At Chef World, we believe in the joy of cooking and sharing delicious meals with friends and family. Join us on this culinary adventure!</p>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-right">
+        <h2>Subscribe to Our Newsletter</h2>
+        <form>
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="social-media">
+      <a href="#" class="fa fa-facebook"></a>
+      <a href="#" class="fa fa-twitter"></a>
+      <a href="#" class="fa fa-instagram"></a>
+      <a href="#" class="fa fa-youtube"></a>
+    </div>
+  </footer>
+
+  <div class="modal" id="login-modal">
+    <div class="modal-content">
+      <span class="close-button" id="close-login">&times;</span>
+      <h2>Login</h2>
+      <div class="login-container">
+        <input type="text" placeholder="Username" required>
+        <input type="password" placeholder="Password" required>
+        <button class="login-button">Login</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const loginLink = document.getElementById('login-link');
+    const loginModal = document.getElementById('login-modal');
+    const closeButton = document.getElementById('close-login');
+
+    loginLink.addEventListener('click', function(event) {
+      event.preventDefault();
+      loginModal.style.display = 'flex';
+    });
+
+    closeButton.addEventListener('click', function() {
+      loginModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function(event) {
+      if (event.target === loginModal) {
+        loginModal.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
