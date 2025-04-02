@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Today's Inspiration</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="today-inspiration">
+  <div class="inspiration-slide" onclick="openCard(0)"> 
+    <!-- Content for Slide 1 -->
+    <p>Slide 1 Content</p>
+  </div>
+  <div class="inspiration-slide" onclick="openCard(1)"> 
+    <!-- Content for Slide 2 -->
+    <p>Slide 2 Content</p>
+  </div>
+  <div class="inspiration-slide" onclick="openCard(2)"> 
+    <!-- Content for Slide 3 -->
+    <p>Slide 3 Content</p>
+  </div>
+</div>
+
+<div class="slide-navigation">
+  <button onclick="showSlide(0)">1</button>
+  <button onclick="showSlide(1)">2</button>
+  <button onclick="showSlide(2)">3</button>
+</div>
+
+<script>
+  const slideLinks = [
+    "https://example.com/slide1", // Link for Slide 1
+    "https://example.com/slide2", // Link for Slide 2
+    "https://example.com/slide3"  // Link for Slide 3
+  ];
+
+  function openCard(slideIndex) {
+    window.location.href = slideLinks[slideIndex];
+  }
+
+  function showSlide(slideIndex) {
+    // Optional: Add code to highlight or display a specific slide
+    console.log(`Showing slide ${slideIndex + 1}`);
+  }
+</script>
+
+</body>
+</html>
